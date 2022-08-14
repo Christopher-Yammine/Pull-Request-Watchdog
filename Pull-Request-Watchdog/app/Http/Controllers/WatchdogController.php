@@ -4,23 +4,73 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+ini_set('max_execution_time', '300');
+
 class WatchdogController extends Controller
 {
+
     public function get14DaysPullRequests()
     {
         $n = 2;
         $mydate = date("Y-m-d", strtotime("-2 week"));
         $mytime = date("H:i:s");
         $formattedDate = $mydate . "T" . $mytime . "Z";
+        $headers = [
+            "Accept:application/vnd.github+json", "User-Agent: Christopher-Yammine",
+            "authorization: Bearer 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"
+        ];
+        $filename = "./1-old-pull-requests.txt";
 
         for ($i = 1; $i < $n; $i++) {
 
             $url = "https://api.github.com/repos/woocommerce/woocommerce/pulls?&per_page=100&page=" . $i;
 
 
-            $headers = [
-                "Accept:application/vnd.github+json", "User-Agent: Christopher-Yammine"
-            ];
+
+            $curl = curl_init($url);
+
+
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+            //for debug only!
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            $resp = curl_exec($curl);
+
+            curl_close($curl);
+            $pull_requests = "";
+            $pull_requests = json_decode($resp, false);
+            $output = "";
+
+            for ($j = 0; $j < count($pull_requests); $j++) {
+                if ($pull_requests[$j]->created_at < $formattedDate) {
+                    $output .= $pull_requests[$j]->title . " " . $pull_requests[$j]->created_at . "\n";
+                }
+            }
+
+            file_put_contents($filename, $output);
+            if (count($pull_requests) === 100) {
+                ++$n;
+            }
+        }
+        echo "Success";
+    }
+    public function getRRPullRequests()
+    {
+        $n = 2;
+
+        $headers = [
+            "Accept:application/vnd.github+json", "User-Agent: Christopher-Yammine",
+            "authorization: Bearer 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"
+        ];
+        for ($i = 1; $i < $n; $i++) {
+
+            $url = "https://api.github.com/repos/woocommerce/woocommerce/pulls?&per_page=100&page=" . $i;
+
+
+
             $curl = curl_init($url);
 
 
@@ -39,8 +89,8 @@ class WatchdogController extends Controller
 
 
             for ($j = 0; $j < count($pull_requests); $j++) {
-                if ($pull_requests[$j]->created_at < $formattedDate) {
-                    echo $pull_requests[$j]->created_at . "\n";
+                if ($pull_requests[$j]->requested_reviewers != [] || $pull_requests[$j]->requested_teams != []) {
+                    echo $pull_requests[$j]->title . "\n";
                 }
             }
             if (count($pull_requests) === 100) {
@@ -48,19 +98,21 @@ class WatchdogController extends Controller
             }
         }
     }
-    public function getRRPullRequests()
+    public function getSuccessPullRequests()
     {
+        $headers = [
+            "Accept:application/vnd.github+json", "User-Agent: Christopher-Yammine",
+            "authorization: Bearer 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"
+        ];
         $n = 2;
-       
+
 
         for ($i = 1; $i < $n; $i++) {
 
             $url = "https://api.github.com/repos/woocommerce/woocommerce/pulls?&per_page=100&page=" . $i;
 
 
-            $headers = [
-                "Accept:application/vnd.github+json", "User-Agent: Christopher-Yammine"
-            ];
+
             $curl = curl_init($url);
 
 
@@ -79,9 +131,73 @@ class WatchdogController extends Controller
 
 
             for ($j = 0; $j < count($pull_requests); $j++) {
-                
-                    echo $pull_requests[$j]->created_at . "\n";
-                
+
+
+                $url2 = "https://api.github.com/repos/woocommerce/woocommerce/commits/" . $pull_requests[$j]->head->sha . "/status";
+
+
+
+                $curl2 = curl_init($url2);
+
+
+                curl_setopt($curl2, CURLOPT_URL, $url2);
+                curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
+
+                //for debug only!
+                curl_setopt($curl2, CURLOPT_SSL_VERIFYHOST, false);
+                curl_setopt($curl2, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($curl2, CURLOPT_HTTPHEADER, $headers);
+                $resp2 = curl_exec($curl2);
+
+                curl_close($curl2);
+                $pull_requests2 = "";
+                $pull_requests2 = json_decode($resp2, false);
+
+                if ($pull_requests2->state == "success") {
+                    echo  $pull_requests[$j]->title . "\n";
+                }
+            }
+            if (count($pull_requests) === 100) {
+                ++$n;
+            }
+        }
+    }
+    public function getUnassignedPullRequests()
+    {
+        $headers = [
+            "Accept:application/vnd.github+json", "User-Agent: Christopher-Yammine",
+            "authorization: Bearer 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"
+        ];
+        $n = 2;
+
+
+        for ($i = 1; $i < $n; $i++) {
+
+            $url = "https://api.github.com/repos/woocommerce/woocommerce/pulls?&per_page=100&page=" . $i;
+
+
+
+            $curl = curl_init($url);
+
+
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+            //for debug only!
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+            $resp = curl_exec($curl);
+
+            curl_close($curl);
+            $pull_requests = "";
+            $pull_requests = json_decode($resp, false);
+
+
+            for ($j = 0; $j < count($pull_requests); $j++) {
+                if ($pull_requests[$j]->requested_reviewers == [] && $pull_requests[$j]->requested_teams == []) {
+                    echo $pull_requests[$j]->title . "\n";
+                }
             }
             if (count($pull_requests) === 100) {
                 ++$n;

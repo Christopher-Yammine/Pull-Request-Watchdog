@@ -14,4 +14,8 @@ use App\Http\Controllers\WatchdogController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('getAllrequests',[WatchdogController::class,'get14DaysPullRequests']);
+Route::get('get14DaysPullRequests',[WatchdogController::class,'get14DaysPullRequests']);
+Route::get('getRRPullRequests',[WatchdogController::class,'getRRPullRequests']);
+Route::get('getSuccessPullRequests',[WatchdogController::class,'getSuccessPullRequests']);
+Route::get('getUnassignedPullRequests',[WatchdogController::class,'getUnassignedPullRequests']);
+

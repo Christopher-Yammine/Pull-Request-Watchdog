@@ -1,0 +1,29 @@
+Ensure bulk editing to "outofstock" decreases stock for stock managed… 2020-12-31T18:27:27Z
+limit the std WP search to exclude hidden products 2020-12-31T16:42:39Z
+Let pass gateway_id as array to query from payment token data store 2020-12-16T09:10:13Z
+Add states for Russia 2020-12-15T11:48:05Z
+Allow for passing context into the get_image for product variation. 2020-12-04T14:08:11Z
+Make dropdown option selected on others like Chinese language after added to cart 2020-11-26T09:23:13Z
+Use WP reset_password() function to reset the customer password 2020-10-05T07:55:36Z
+Fixed: Calling 'WC_Coupon::save()' multiple times causes some fields not being updated when trying to delete coupon restrictions. Issue #24570 2020-10-03T17:47:27Z
+Add filter to uniqueness of webhooks, allowing all to send. 2020-10-03T02:33:13Z
+remove woocommerce_form_field radio type input label content HTML esc… 2020-09-30T16:40:17Z
+Allow line-breaks in messages of WC_Log_Handler_DB/WC_Admin_Log_Table_List  2020-09-23T11:59:47Z
+#26764 secure cookie filter hook 2020-09-11T08:44:04Z
+Bugfix/multiple notices in cart 2020-08-30T20:08:14Z
+Fixes load of selectWoo and script in customizer to align the dropdow… 2020-08-25T13:45:32Z
+Enhanced ajax checkout coupon issue 2020-08-23T18:27:18Z
+Refactor/reserve stock class 2020-08-19T13:36:56Z
+REST API: Retrieve downloads from an order #27298 2020-08-15T14:40:22Z
+Retrieve/update product stock threshold via REST API #27291 2020-08-15T12:05:17Z
+Tweak - Added links to shipping methods configuration in shipping zones. 2020-08-06T19:21:03Z
+Update wc-product-functions.php 2020-07-11T05:24:50Z
+Adding extraParameters to triggerHandler on checkout.js to gateways manipulate the checkout if needed with more data 2020-06-20T17:31:50Z
+New hook to be able to override shipping_tax_class in calculate_taxes 2020-05-18T07:56:49Z
+Filter is_purchasable when getting cart item from session 2020-04-14T15:20:29Z
+Decrease total sales per product when an order is reversed 2020-04-06T18:50:25Z
+Move contents of a deleted inactive user to admin 2020-03-20T12:47:17Z
+allow custom fields on csv export to fetch variations 2020-03-16T18:21:25Z
+Sort items for before applying discounts by the price property 2019-12-04T06:59:23Z
+Display price depend on price location 2019-11-20T14:08:42Z
+Modify wc_get_products/WC_Product_Query to handle more complete 'total_sales' query ( #23452 )  2019-05-18T12:52:50Z
