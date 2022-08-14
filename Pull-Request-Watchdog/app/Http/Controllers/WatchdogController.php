@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class WatchdogController extends Controller
 {
+    
 
     public function getOldPullRequests()
     {
@@ -56,7 +57,7 @@ class WatchdogController extends Controller
         $fileLink .= env("DOWNLOADS_URL") . $rawLink;
         return response()->json([
             "status" => "success",
-            "link" => $fileLink
+            "old_PRs" => $fileLink
         ], 200);
     }
 
@@ -99,7 +100,7 @@ class WatchdogController extends Controller
         $fileLink .= env("DOWNLOADS_URL") . $rawLink;
         return response()->json([
             "status" => "success",
-            "link" => $fileLink
+            "review_required" => $fileLink
         ], 200);
     }
     public function getSuccessPullRequests()
@@ -117,7 +118,7 @@ class WatchdogController extends Controller
         for ($i = 1; $i < $n; $i++) {
 
             $url = env("BASE_URL") . $i;
-           
+
             $curl = curl_init($url);
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -130,20 +131,20 @@ class WatchdogController extends Controller
             $pull_requests = "";
             $pull_requests = json_decode($resp, false);
             for ($j = 0; $j < count($pull_requests); $j++) {
-                $url2 = "https://api.github.com/repos/woocommerce/woocommerce/commits/" . $pull_requests[$j]->head->sha . "/status";
-                $curl2 = curl_init($url2);
-                curl_setopt($curl2, CURLOPT_URL, $url2);
-                curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($curl2, CURLOPT_SSL_VERIFYHOST, false);
-                curl_setopt($curl2, CURLOPT_SSL_VERIFYPEER, false);
-                curl_setopt($curl2, CURLOPT_HTTPHEADER, $headers);
-                $resp2 = curl_exec($curl2);
-              
-                curl_close($curl2);
-                $pull_requests2 = "";
-                $pull_requests2 = json_decode($resp2, false);
+                $status_url = "https://api.github.com/repos/woocommerce/woocommerce/commits/" . $pull_requests[$j]->head->sha . "/status";
+                $status_curl = curl_init($status_url);
+                curl_setopt($status_curl, CURLOPT_URL, $status_url);
+                curl_setopt($status_curl, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($status_curl, CURLOPT_SSL_VERIFYHOST, false);
+                curl_setopt($status_curl, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($status_curl, CURLOPT_HTTPHEADER, $headers);
+                $resp2 = curl_exec($status_curl);
 
-                if ($pull_requests2->state == "success") {
+                curl_close($status_curl);
+                $status_pull_requests = "";
+                $status_pull_requests = json_decode($resp2, false);
+
+                if ($status_pull_requests->state == "success") {
                     $output .= $pull_requests[$j]->title . "\n";
                 }
             }
@@ -156,7 +157,7 @@ class WatchdogController extends Controller
         $fileLink .= env("DOWNLOADS_URL") . $rawLink;
         return response()->json([
             "status" => "success",
-            "link" => $fileLink
+            "successful_prs" => $fileLink
         ], 200);
     }
     public function getUnassignedPullRequests()
@@ -200,7 +201,7 @@ class WatchdogController extends Controller
         $fileLink .= env("DOWNLOADS_URL") . $rawLink;
         return response()->json([
             "status" => "success",
-            "link" => $fileLink
+            "unassigned_prs" => $fileLink
         ], 200);
     }
 }
