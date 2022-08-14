@@ -142,24 +142,3 @@ Update states.php
 Update states.php
 Allow $0 orders, again
 Fix the ability to add custom variation options when using class-wc-c…
-Ensure bulk editing to "outofstock" decreases stock for stock managed…
-limit the std WP search to exclude hidden products
-Add states for Russia
-Allow for passing context into the get_image for product variation.
-Make dropdown option selected on others like Chinese language after added to cart
-Use WP reset_password() function to reset the customer password
-Add filter to uniqueness of webhooks, allowing all to send.
-remove woocommerce_form_field radio type input label content HTML esc…
-#26764 secure cookie filter hook
-Bugfix/multiple notices in cart
-Enhanced ajax checkout coupon issue
-Refactor/reserve stock class
-REST API: Retrieve downloads from an order #27298
-Tweak - Added links to shipping methods configuration in shipping zones.
-Adding extraParameters to triggerHandler on checkout.js to gateways manipulate the checkout if needed with more data
-Filter is_purchasable when getting cart item from session
-Decrease total sales per product when an order is reversed
-allow custom fields on csv export to fetch variations
-Sort items for before applying discounts by the price property
-Display price depend on price location
-Modify wc_get_products/WC_Product_Query to handle more complete 'total_sales' query ( #23452 ) 

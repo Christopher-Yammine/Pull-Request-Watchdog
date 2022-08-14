@@ -22,7 +22,7 @@ class WatchdogController extends Controller
         $filename = "./Downloads/1-old-pull-requests.csv";
         $output = "";
         for ($i = 1; $i < $n; $i++) {
-            
+
             $pull_requests = $github->urlCurl($i)[1];
 
             for ($j = 0; $j < count($pull_requests); $j++) {
@@ -59,7 +59,6 @@ class WatchdogController extends Controller
                 }
             }
             $n = $github->urlCurl($i)[0];
-            
         }
         file_put_contents($filename, $output);
         $rawLink = explode("./", $filename)[1];
@@ -131,36 +130,17 @@ class WatchdogController extends Controller
         $filename = "./Downloads/4-Unassigned-PRs.csv";
         $fileLink = "";
         $output = "";
-        $headers = [
-            "Accept:application/vnd.github+json", "User-Agent: Christopher-Yammine",
-            "authorization: Bearer " . env("TOKEN")
-        ];
-
+        $github = new GithubController();
         $n = 2;
         for ($i = 1; $i < $n; $i++) {
 
-            $url = env("BASE_URL") . $i;
-            $curl = curl_init($url);
-            curl_setopt($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-            $resp = curl_exec($curl);
-
-            curl_close($curl);
-            $pull_requests = "";
-            $pull_requests = json_decode($resp, false);
-
-
+            $pull_requests = $github->urlCurl($i)[1];
             for ($j = 0; $j < count($pull_requests); $j++) {
                 if ($pull_requests[$j]->requested_reviewers == [] && $pull_requests[$j]->requested_teams == []) {
                     $output .= $pull_requests[$j]->title . "\n";
                 }
             }
-            if (count($pull_requests) === 100) {
-                ++$n;
-            }
+            $n = $github->urlCurl($i)[0];
         }
         file_put_contents($filename, $output);
         $rawLink = explode("./", $filename)[1];
