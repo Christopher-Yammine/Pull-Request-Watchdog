@@ -28,9 +28,12 @@ class WatchdogController extends Controller
       
         // $chi=array_column($beers,"id");
         // $element=array_rand($chi,1);
-        for($i=0;$i<count($pull_requests);$i++){
-            print_r($pull_requests[$i]->url . "\n");
-        }
+        // for($i=0;$i<count($pull_requests);$i++){
+        //     print_r($pull_requests[$i]->url . "\n");
+        // }
+        
+        $mydate=date("Y-m-d", strtotime("-2 week"));
+        print_r($mydate); 
         
     }
 }
