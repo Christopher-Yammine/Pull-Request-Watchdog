@@ -17,9 +17,9 @@ class WatchdogController extends Controller
         $formattedDate = $mydate . "T" . $mytime . "Z";
         $headers = [
             "Accept:application/vnd.github+json", "User-Agent: Christopher-Yammine",
-            "authorization: Bearer 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"
+            "authorization: Bearer " . env("TOKEN")
         ];
-        $filename = "./1-old-pull-requests.txt";
+        $filename = "./Downloads/1-old-pull-requests.txt";
         $output = "";
         for ($i = 1; $i < $n; $i++) {
 
@@ -56,6 +56,7 @@ class WatchdogController extends Controller
             }
         }
         file_put_contents($filename, $output);
+
         echo "Done registering old PRs";
     }
 
@@ -65,9 +66,9 @@ class WatchdogController extends Controller
 
         $headers = [
             "Accept:application/vnd.github+json", "User-Agent: Christopher-Yammine",
-            "authorization: Bearer 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"
+            "authorization: Bearer " . env("TOKEN")
         ];
-        $filename = "./2-review-required-pull-requests.txt";
+        $filename = "./Downloads/2-review-required-pull-requests.txt";
         $output = "";
         for ($i = 1; $i < $n; $i++) {
 
@@ -108,10 +109,10 @@ class WatchdogController extends Controller
     {
         $headers = [
             "Accept:application/vnd.github+json", "User-Agent: Christopher-Yammine",
-            "authorization: Bearer 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"
+            "authorization: Bearer " . env("TOKEN")
         ];
         $n = 2;
-        $filename = "./3-Successful-PRs.txt";
+        $filename = "./Downloads/3-Successful-PRs.txt";
         $output = "";
 
         for ($i = 1; $i < $n; $i++) {
@@ -125,8 +126,6 @@ class WatchdogController extends Controller
 
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-            //for debug only!
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
@@ -173,28 +172,20 @@ class WatchdogController extends Controller
     }
     public function getUnassignedPullRequests()
     {
-        $filename = "./4-Unassigned-PRs.txt";
+        $filename = "./Downloads/4-Unassigned-PRs.txt";
         $output = "";
         $headers = [
             "Accept:application/vnd.github+json", "User-Agent: Christopher-Yammine",
-            "authorization: Bearer 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"
+            "authorization: Bearer " . env("TOKEN")
         ];
+
         $n = 2;
-
-
         for ($i = 1; $i < $n; $i++) {
 
             $url = "https://api.github.com/repos/woocommerce/woocommerce/pulls?&per_page=100&page=" . $i;
-
-
-
             $curl = curl_init($url);
-
-
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-            //for debug only!
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
@@ -207,8 +198,7 @@ class WatchdogController extends Controller
 
             for ($j = 0; $j < count($pull_requests); $j++) {
                 if ($pull_requests[$j]->requested_reviewers == [] && $pull_requests[$j]->requested_teams == []) {
-                    $output.=$pull_requests[$j]->title . "\n";
-                   
+                    $output .= $pull_requests[$j]->title . "\n";
                 }
             }
             if (count($pull_requests) === 100) {
