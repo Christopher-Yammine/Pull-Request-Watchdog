@@ -42,7 +42,7 @@ class WatchdogController extends Controller
             curl_close($curl);
             $pull_requests = "";
             $pull_requests = json_decode($resp, false);
-            
+
 
             for ($j = 0; $j < count($pull_requests); $j++) {
                 if ($pull_requests[$j]->created_at < $formattedDate) {
@@ -50,13 +50,13 @@ class WatchdogController extends Controller
                 }
             }
 
-            
+
             if (count($pull_requests) === 100) {
                 ++$n;
             }
         }
         file_put_contents($filename, $output);
-        echo "Done";
+        echo "Done registering old PRs";
     }
 
     public function getRRPullRequests()
@@ -90,20 +90,19 @@ class WatchdogController extends Controller
             curl_close($curl);
             $pull_requests = "";
             $pull_requests = json_decode($resp, false);
-           
+
             for ($j = 0; $j < count($pull_requests); $j++) {
                 if ($pull_requests[$j]->requested_reviewers != [] || $pull_requests[$j]->requested_teams != []) {
-                    $output.=$pull_requests[$j]->title . "\n";
-                    
+                    $output .= $pull_requests[$j]->title . "\n";
                 }
             }
-            
+
             if (count($pull_requests) === 100) {
                 ++$n;
             }
         }
         file_put_contents($filename, $output);
-        echo "Done";
+        echo "Done registering review required PRs";
     }
     public function getSuccessPullRequests()
     {
@@ -112,7 +111,8 @@ class WatchdogController extends Controller
             "authorization: Bearer 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"
         ];
         $n = 2;
-
+        $filename = "./3-Successful-PRs.txt";
+        $output = "";
 
         for ($i = 1; $i < $n; $i++) {
 
@@ -161,16 +161,20 @@ class WatchdogController extends Controller
                 $pull_requests2 = json_decode($resp2, false);
 
                 if ($pull_requests2->state == "success") {
-                    echo  $pull_requests[$j]->title . "\n";
+                    $output .= $pull_requests[$j]->title . "\n";
                 }
             }
             if (count($pull_requests) === 100) {
                 ++$n;
             }
         }
+        file_put_contents($filename, $output);
+        echo "Done registering PRs with success status";
     }
     public function getUnassignedPullRequests()
     {
+        $filename = "./4-Unassigned-PRs.txt";
+        $output = "";
         $headers = [
             "Accept:application/vnd.github+json", "User-Agent: Christopher-Yammine",
             "authorization: Bearer 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"
@@ -203,12 +207,15 @@ class WatchdogController extends Controller
 
             for ($j = 0; $j < count($pull_requests); $j++) {
                 if ($pull_requests[$j]->requested_reviewers == [] && $pull_requests[$j]->requested_teams == []) {
-                    echo $pull_requests[$j]->title . "\n";
+                    $output.=$pull_requests[$j]->title . "\n";
+                   
                 }
             }
             if (count($pull_requests) === 100) {
                 ++$n;
             }
         }
+        file_put_contents($filename, $output);
+        echo "Done registering unassigned PRs";
     }
 }
