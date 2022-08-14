@@ -1,0 +1,8 @@
+Let pass gateway_id as array to query from payment token data store
+Fixed: Calling 'WC_Coupon::save()' multiple times causes some fields not being updated when trying to delete coupon restrictions. Issue #24570
+Allow line-breaks in messages of WC_Log_Handler_DB/WC_Admin_Log_Table_List 
+Fixes load of selectWoo and script in customizer to align the dropdow…
+Retrieve/update product stock threshold via REST API #27291
+Update wc-product-functions.php
+New hook to be able to override shipping_tax_class in calculate_taxes
+Move contents of a deleted inactive user to admin

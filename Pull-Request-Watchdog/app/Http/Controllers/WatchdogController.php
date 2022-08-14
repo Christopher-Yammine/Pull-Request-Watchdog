@@ -20,7 +20,7 @@ class WatchdogController extends Controller
             "authorization: Bearer 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"
         ];
         $filename = "./1-old-pull-requests.txt";
-
+        $output = "";
         for ($i = 1; $i < $n; $i++) {
 
             $url = "https://api.github.com/repos/woocommerce/woocommerce/pulls?&per_page=100&page=" . $i;
@@ -42,7 +42,7 @@ class WatchdogController extends Controller
             curl_close($curl);
             $pull_requests = "";
             $pull_requests = json_decode($resp, false);
-            $output = "";
+            
 
             for ($j = 0; $j < count($pull_requests); $j++) {
                 if ($pull_requests[$j]->created_at < $formattedDate) {
@@ -50,13 +50,15 @@ class WatchdogController extends Controller
                 }
             }
 
-            file_put_contents($filename, $output);
+            
             if (count($pull_requests) === 100) {
                 ++$n;
             }
         }
-        echo "Success";
+        file_put_contents($filename, $output);
+        echo "Done";
     }
+
     public function getRRPullRequests()
     {
         $n = 2;
@@ -65,6 +67,8 @@ class WatchdogController extends Controller
             "Accept:application/vnd.github+json", "User-Agent: Christopher-Yammine",
             "authorization: Bearer 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"
         ];
+        $filename = "./2-review-required-pull-requests.txt";
+        $output = "";
         for ($i = 1; $i < $n; $i++) {
 
             $url = "https://api.github.com/repos/woocommerce/woocommerce/pulls?&per_page=100&page=" . $i;
@@ -86,17 +90,20 @@ class WatchdogController extends Controller
             curl_close($curl);
             $pull_requests = "";
             $pull_requests = json_decode($resp, false);
-
-
+           
             for ($j = 0; $j < count($pull_requests); $j++) {
                 if ($pull_requests[$j]->requested_reviewers != [] || $pull_requests[$j]->requested_teams != []) {
-                    echo $pull_requests[$j]->title . "\n";
+                    $output.=$pull_requests[$j]->title . "\n";
+                    
                 }
             }
+            
             if (count($pull_requests) === 100) {
                 ++$n;
             }
         }
+        file_put_contents($filename, $output);
+        echo "Done";
     }
     public function getSuccessPullRequests()
     {
