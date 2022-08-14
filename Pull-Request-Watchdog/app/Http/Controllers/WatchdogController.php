@@ -9,7 +9,7 @@ ini_set('max_execution_time', '300');
 class WatchdogController extends Controller
 {
 
-    public function get14DaysPullRequests()
+    public function getOldPullRequests()
     {
         $n = 2;
         $mydate = date("Y-m-d", strtotime("-2 week"));
@@ -19,17 +19,11 @@ class WatchdogController extends Controller
             "Accept:application/vnd.github+json", "User-Agent: Christopher-Yammine",
             "authorization: Bearer " . env("TOKEN")
         ];
-        $filename = "./Downloads/1-old-pull-requests.txt";
+        $filename = "./Downloads/1-old-pull-requests.csv";
         $output = "";
         for ($i = 1; $i < $n; $i++) {
-
-            $url = "https://api.github.com/repos/woocommerce/woocommerce/pulls?&per_page=100&page=" . $i;
-
-
-
+            $url = env("BASE_URL") . $i;
             $curl = curl_init($url);
-
-
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
@@ -68,26 +62,18 @@ class WatchdogController extends Controller
             "Accept:application/vnd.github+json", "User-Agent: Christopher-Yammine",
             "authorization: Bearer " . env("TOKEN")
         ];
-        $filename = "./Downloads/2-review-required-pull-requests.txt";
+        $filename = "./Downloads/2-review-required-pull-requests.csv";
         $output = "";
         for ($i = 1; $i < $n; $i++) {
 
-            $url = "https://api.github.com/repos/woocommerce/woocommerce/pulls?&per_page=100&page=" . $i;
-
-
-
+            $url = env("BASE_URL") . $i;
             $curl = curl_init($url);
-
-
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-            //for debug only!
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
             $resp = curl_exec($curl);
-
             curl_close($curl);
             $pull_requests = "";
             $pull_requests = json_decode($resp, false);
@@ -112,12 +98,12 @@ class WatchdogController extends Controller
             "authorization: Bearer " . env("TOKEN")
         ];
         $n = 2;
-        $filename = "./Downloads/3-Successful-PRs.txt";
+        $filename = "./Downloads/3-Successful-PRs.csv";
         $output = "";
 
         for ($i = 1; $i < $n; $i++) {
 
-            $url = "https://api.github.com/repos/woocommerce/woocommerce/pulls?&per_page=100&page=" . $i;
+            $url = env("BASE_URL") . $i;
 
 
 
@@ -172,7 +158,7 @@ class WatchdogController extends Controller
     }
     public function getUnassignedPullRequests()
     {
-        $filename = "./Downloads/4-Unassigned-PRs.txt";
+        $filename = "./Downloads/4-Unassigned-PRs.csv";
         $output = "";
         $headers = [
             "Accept:application/vnd.github+json", "User-Agent: Christopher-Yammine",
@@ -182,7 +168,7 @@ class WatchdogController extends Controller
         $n = 2;
         for ($i = 1; $i < $n; $i++) {
 
-            $url = "https://api.github.com/repos/woocommerce/woocommerce/pulls?&per_page=100&page=" . $i;
+            $url = env("BASE_URL") . $i;
             $curl = curl_init($url);
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
