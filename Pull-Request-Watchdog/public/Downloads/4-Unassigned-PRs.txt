@@ -1,16 +1,29 @@
+34324 [COT] Implement methods `get_order_count`, `get_unpaid_orders` and `get_order_id_by_order_key` in the COT datastore https://github.com/woocommerce/woocommerce/pull/34324
+34322 Update/unify jest@27 across all packages https://github.com/woocommerce/woocommerce/pull/34322
+34318 Remove foreign key from the wc_download_log table https://github.com/woocommerce/woocommerce/pull/34318
+34317 Remove WCPay Subscriptions offer page experiment code https://github.com/woocommerce/woocommerce/pull/34317
+34297 Update "context" prop of task list click/view event https://github.com/woocommerce/woocommerce/pull/34297
+34295 Add unit tests for orders milestone note https://github.com/woocommerce/woocommerce/pull/34295
+34293 Adding DateTimePicker component https://github.com/woocommerce/woocommerce/pull/34293
+34292 Cat dashboard loading time https://github.com/woocommerce/woocommerce/pull/34292
+34283 Feature/review table list https://github.com/woocommerce/woocommerce/pull/34283
+34282 Make qty input box visible when min_qty = max_qty https://github.com/woocommerce/woocommerce/pull/34282
+34264 Marketing page - Implement "Learn about marketing a store" card https://github.com/woocommerce/woocommerce/pull/34264
+34259 Add back FB extension to Installed marketing extensions list. https://github.com/woocommerce/woocommerce/pull/34259
+34254 Fixed spacing issue single product gallery thumb image https://github.com/woocommerce/woocommerce/pull/34254
+34235 Make use of GHA feature in CI https://github.com/woocommerce/woocommerce/pull/34235
+34205 Skip thumbnail regeneration when Photon Image CDN handles it externally. https://github.com/woocommerce/woocommerce/pull/34205
+34201 Fixed issues of spacing between author image and name https://github.com/woocommerce/woocommerce/pull/34201
+34189 Liechtenstein Checkout: Hide Municipality Field with empty states array https://github.com/woocommerce/woocommerce/pull/34189
+34170 Fixed categories thumb column overlap with categories name https://github.com/woocommerce/woocommerce/pull/34170
+34167 Link backfilling to migration process https://github.com/woocommerce/woocommerce/pull/34167
+34159 Add SearchControl component https://github.com/woocommerce/woocommerce/pull/34159
 34125 WIP Custom order tables work -- do not merge https://github.com/woocommerce/woocommerce/pull/34125
 34081 (WIP) E2e/rep s3 daily https://github.com/woocommerce/woocommerce/pull/34081
-34079 Require tracking opt in before polling data https://github.com/woocommerce/woocommerce/pull/34079
 34076 Fix #32542 https://github.com/woocommerce/woocommerce/pull/34076
-34073 Add `wc com connect` command https://github.com/woocommerce/woocommerce/pull/34073
-34050 Add support for refunds and other order types in custom order tables https://github.com/woocommerce/woocommerce/pull/34050
-34038 Update inbox notes to display localized strings when locale changed https://github.com/woocommerce/woocommerce/pull/34038
 34037 adding link of facebook group in readme with proper text https://github.com/woocommerce/woocommerce/pull/34037
-34019 Add the AccessiblePrivateMethods trait https://github.com/woocommerce/woocommerce/pull/34019
 34016 Update WooCommerce Badge Design https://github.com/woocommerce/woocommerce/pull/34016
-34014 No states for Saint Martin - French Part https://github.com/woocommerce/woocommerce/pull/34014
 34011 [WIP] WCA Test Helper: Recent Tracks Events https://github.com/woocommerce/woocommerce/pull/34011
-34005 Add `recordEvent` validation to Tracks package https://github.com/woocommerce/woocommerce/pull/34005
 33995 Update css for single product badge https://github.com/woocommerce/woocommerce/pull/33995
 33991 Fix incorrect VAT exempt behaviour on shop page when prices are exclusive of tax.  https://github.com/woocommerce/woocommerce/pull/33991
 33977 Implement `maxFailures` and warning messages https://github.com/woocommerce/woocommerce/pull/33977
@@ -18,31 +31,20 @@
 33966 Fix Button block markup for Onboarding homepage https://github.com/woocommerce/woocommerce/pull/33966
 33945 improve performance and reduce memory consumption of get_product https://github.com/woocommerce/woocommerce/pull/33945
 33932 Woo CLI based on Symfony Console (Experiment) https://github.com/woocommerce/woocommerce/pull/33932
-33927 Add WooCommerce header to WooCommerce.com requests https://github.com/woocommerce/woocommerce/pull/33927
 33901 chore: Unify imports syntax in admin-e2e, add missing dependencies https://github.com/woocommerce/woocommerce/pull/33901
 33885 Update README.md with the official Facebook group name https://github.com/woocommerce/woocommerce/pull/33885
 33853 Fix docblock type annotations for `$meta_value` parameter. https://github.com/woocommerce/woocommerce/pull/33853
 33852 Create test suite files to be directly imported to jest, w/o scaffolding https://github.com/woocommerce/woocommerce/pull/33852
-33833 Update `@woocommerce/extend-checkout-block` to include an example of a forced inner block https://github.com/woocommerce/woocommerce/pull/33833
-33832 Update method for getting Reports API cache version number... again https://github.com/woocommerce/woocommerce/pull/33832
-33828 Update `config@3.3.7` (from `3.3.3`) https://github.com/woocommerce/woocommerce/pull/33828
-33827 Update `jest-puppeteer@5.0.4` (from `4.4.0`) https://github.com/woocommerce/woocommerce/pull/33827
 33821 Fixed checking post object and field ID https://github.com/woocommerce/woocommerce/pull/33821
 33820 Fixed import and visibility tax values to lowercase https://github.com/woocommerce/woocommerce/pull/33820
-33812 Fix inconsistent order total on checkout vs manual order page https://github.com/woocommerce/woocommerce/pull/33812
 33803 Enhancement - Add new customer address functions https://github.com/woocommerce/woocommerce/pull/33803
-33791 Trashed coupons should not be usable (unless restored). https://github.com/woocommerce/woocommerce/pull/33791
 33735 Fixed - woocommerce_order_tracking shortcode causes fatal error if a refund ID is entered #31760 issue https://github.com/woocommerce/woocommerce/pull/33735
 33726 Removed WooCommerce 6.7 Changelog Files https://github.com/woocommerce/woocommerce/pull/33726
 33710 chore: Set permissions for GitHub actions https://github.com/woocommerce/woocommerce/pull/33710
-33681 Add product archive header template and re-hook https://github.com/woocommerce/woocommerce/pull/33681
-33678 Fix admin API for analytics leaderboard on PHP8 returning 5xx error https://github.com/woocommerce/woocommerce/pull/33678
 33659 adjustments made to css files https://github.com/woocommerce/woocommerce/pull/33659
-33641 Playwright API POC https://github.com/woocommerce/woocommerce/pull/33641
 33639 Filter reload_checkout when processing customer on submit order https://github.com/woocommerce/woocommerce/pull/33639
 33616 [DO NOT MERGE] WooCommerce Twenty Twenty-Two Stylesheet audit comments https://github.com/woocommerce/woocommerce/pull/33616
 33608 Preventing php warnings in logs - in cases when wc_get_image_size returns string and not array https://github.com/woocommerce/woocommerce/pull/33608
-33575 Stock checks not required if stock levels have already been reduced. https://github.com/woocommerce/woocommerce/pull/33575
 33550 Product: check for empty object before deleting subscription notes. https://github.com/woocommerce/woocommerce/pull/33550
 33544 Fix Protected Directory Detection and Admin Notice https://github.com/woocommerce/woocommerce/pull/33544
 33508 Normalize collection param handling in Reports API controllers https://github.com/woocommerce/woocommerce/pull/33508
@@ -54,42 +56,28 @@
 33485 Date time create from format call https://github.com/woocommerce/woocommerce/pull/33485
 33483 [HACK week] Introduce experimental GraphQL and API endpoints for orders using COT https://github.com/woocommerce/woocommerce/pull/33483
 33447 [DO NOT MERGE] Example of detabbing the product data box https://github.com/woocommerce/woocommerce/pull/33447
-33416 Preserve meta-data uniqueness https://github.com/woocommerce/woocommerce/pull/33416
 33411 (WIP) DO NOT MERGE https://github.com/woocommerce/woocommerce/pull/33411
 33301 Update Minimum WordPress Version Notice https://github.com/woocommerce/woocommerce/pull/33301
 33281 27706 Allow Payment Method HTML https://github.com/woocommerce/woocommerce/pull/33281
 33166 Orders API: Add decimal-place formatting to tax totals in order line items https://github.com/woocommerce/woocommerce/pull/33166
 33152 Fix low stock threshold input wrapper to clear on floating element https://github.com/woocommerce/woocommerce/pull/33152
-33122 Include screenreader text for the regular & discounted price. https://github.com/woocommerce/woocommerce/pull/33122
 33041 Flexslider CLS enhancements - followup #31418 https://github.com/woocommerce/woocommerce/pull/33041
-32946 Update Guernsey state field to non-required https://github.com/woocommerce/woocommerce/pull/32946
 32887 Use maybe_un|serialize() to handle post meta arrays in import/export.… https://github.com/woocommerce/woocommerce/pull/32887
-32879 Add new filters to find_matching_product_variation https://github.com/woocommerce/woocommerce/pull/32879
 32830 Storybook: Clean up dependencies https://github.com/woocommerce/woocommerce/pull/32830
 32721 31823 Improved Logging Information in List Table https://github.com/woocommerce/woocommerce/pull/32721
 32699 Added a filter to change the Error message and allow developers to add custom text after each table row https://github.com/woocommerce/woocommerce/pull/32699
-32557 updateFragments performance issue fix https://github.com/woocommerce/woocommerce/pull/32557
 32502 Add/payment failed action hook https://github.com/woocommerce/woocommerce/pull/32502
 32439 Added filter for complete order email text customize https://github.com/woocommerce/woocommerce/pull/32439
 32367 Run k6 tests against External Site using Nightly Build https://github.com/woocommerce/woocommerce/pull/32367
-32328 Fix row actions to show in the order overview. (edit, quick edit, trash etc.) https://github.com/woocommerce/woocommerce/pull/32328
 32321 Add notice REST endpoints and data store https://github.com/woocommerce/woocommerce/pull/32321
-32288 Prevent warning on wc_get_product_variation_attributes https://github.com/woocommerce/woocommerce/pull/32288
-32061 Fix - Rest Response while trashing/deleting item https://github.com/woocommerce/woocommerce/pull/32061
-32060 Include missing data in Tracks events, add event prefix filter. https://github.com/woocommerce/woocommerce/pull/32060
 32026 Update wc-account-functions.php https://github.com/woocommerce/woocommerce/pull/32026
 32010 fix/31971: tax calculation and coupon sequence https://github.com/woocommerce/woocommerce/pull/32010
-31991 Verify feature-disabling filters before loading the packages https://github.com/woocommerce/woocommerce/pull/31991
-31902 Feature/css custom props - followup #29575 https://github.com/woocommerce/woocommerce/pull/31902
 31890 Refactor direct queries https://github.com/woocommerce/woocommerce/pull/31890
 31886 Fix payment instruction location in on-hold email (#31880) https://github.com/woocommerce/woocommerce/pull/31886
 31874 Use WC_Order meta data access methods. https://github.com/woocommerce/woocommerce/pull/31874
 31869 MVP for custom order table data store https://github.com/woocommerce/woocommerce/pull/31869
-31861 Fix 31859 issue: Subtotal check uses the wrong subtotal in orders https://github.com/woocommerce/woocommerce/pull/31861
 31787 Add legacy wc_format_postcode tests along with new tests for IE and PT postcodes https://github.com/woocommerce/woocommerce/pull/31787
 31759 woocommerce_get_checkout_payment_url enhancement https://github.com/woocommerce/woocommerce/pull/31759
-31745 31451 - Filter Out Disabled Attributes in Filter Products Widget https://github.com/woocommerce/woocommerce/pull/31745
-31670 Removes the star icon font https://github.com/woocommerce/woocommerce/pull/31670
 31652 Localize dimension and weight options when used in view context Fix/31486 https://github.com/woocommerce/woocommerce/pull/31652
 31622 E2e/add defaults to config get v2 https://github.com/woocommerce/woocommerce/pull/31622
 31615 Add/config default values https://github.com/woocommerce/woocommerce/pull/31615
@@ -101,9 +89,6 @@
 31425 Fix Kosovo states https://github.com/woocommerce/woocommerce/pull/31425
 31420 [WIP] Try to speed up E2E test runs. https://github.com/woocommerce/woocommerce/pull/31420
 31408 [WIP] Try reducing workflow steps https://github.com/woocommerce/woocommerce/pull/31408
-31310 Make single page add-to-cart button class filterable https://github.com/woocommerce/woocommerce/pull/31310
-31222 Use `WC_Order_Query` for the Orders API Endpoint. https://github.com/woocommerce/woocommerce/pull/31222
-31209 Update provinces/cities for country Vietnam https://github.com/woocommerce/woocommerce/pull/31209
 31145 Add inline file delivery to WC_Download_Handler https://github.com/woocommerce/woocommerce/pull/31145
 31108 Added support for custom checkbox fields used with 'address-i18n.js' https://github.com/woocommerce/woocommerce/pull/31108
 31089 fix #28752 https://github.com/woocommerce/woocommerce/pull/31089
@@ -111,12 +96,8 @@
 31024 Update states.php https://github.com/woocommerce/woocommerce/pull/31024
 31017 POC: Add tombstone endpoint https://github.com/woocommerce/woocommerce/pull/31017
 30973 prohibit creating of coupons with empty coupon code https://github.com/woocommerce/woocommerce/pull/30973
-30963 Fix #29673, reduce font size and margin of email + phone on order pag… https://github.com/woocommerce/woocommerce/pull/30963
-30962 Fix #29782 - fix for duplicate entries for downloadable products with… https://github.com/woocommerce/woocommerce/pull/30962
-30921 Support using category_id and tag_id in wc_get_product() https://github.com/woocommerce/woocommerce/pull/30921
 30916 Change hardcoded wp-content to dynamic code https://github.com/woocommerce/woocommerce/pull/30916
 30906 Implemented variable for font path https://github.com/woocommerce/woocommerce/pull/30906
-30884 Fix 'Invalid payment method' error upon double click 'Delete' #30862 https://github.com/woocommerce/woocommerce/pull/30884
 30857 fix/30829: Old Woo Purple a36597 & a16696 https://github.com/woocommerce/woocommerce/pull/30857
 30855 Add order shipping rate endpoint https://github.com/woocommerce/woocommerce/pull/30855
 30851 Proof of concept: use WP CLI tool to generate order data for REST API E2E tests. https://github.com/woocommerce/woocommerce/pull/30851
@@ -125,16 +106,13 @@
 30723 Add $formatted_destination as an argument to the woocommerce_cart_no_shipping_available_html filter https://github.com/woocommerce/woocommerce/pull/30723
 30715 Test/workflow update https://github.com/woocommerce/woocommerce/pull/30715
 30647 Fix refund amount field validation message appears misaligned on Edit… https://github.com/woocommerce/woocommerce/pull/30647
-30642 Add/Remove order coupon actions logged in notes https://github.com/woocommerce/woocommerce/pull/30642
 30605 Update the Azerbaijani manat symbol AZN https://github.com/woocommerce/woocommerce/pull/30605
 30584 POC: update puppeteer utils https://github.com/woocommerce/woocommerce/pull/30584
 30519 bump default e2e PHP version to 8.0 https://github.com/woocommerce/woocommerce/pull/30519
 30409 attributes table: implemented filters for table headers and rows https://github.com/woocommerce/woocommerce/pull/30409
 30370 Fix: Loading product page always write something to DB https://github.com/woocommerce/woocommerce/pull/30370
 30326 Fix enable update cart button on some more events https://github.com/woocommerce/woocommerce/pull/30326
-30324 add new action woocommerce_after_mini_cart_item_name https://github.com/woocommerce/woocommerce/pull/30324
 30227 Adding Chilean states or Comunas de Chile https://github.com/woocommerce/woocommerce/pull/30227
-30183 fix: use event delegation for wpbody instead tbody https://github.com/woocommerce/woocommerce/pull/30183
 30175 fixes #29954 https://github.com/woocommerce/woocommerce/pull/30175
 30148 Update states.php https://github.com/woocommerce/woocommerce/pull/30148
 30131 Fix _tax_class sanitizing process on bulk action https://github.com/woocommerce/woocommerce/pull/30131
@@ -152,7 +130,6 @@
 29612 Make attribute ID unique. Fixes #26832 https://github.com/woocommerce/woocommerce/pull/29612
 29486 check for package_hash to be defined https://github.com/woocommerce/woocommerce/pull/29486
 29458 Remove legacy code in shipping handling https://github.com/woocommerce/woocommerce/pull/29458
-29380 Update Venezuelan currency: Bolívar (Bs.) https://github.com/woocommerce/woocommerce/pull/29380
 29248 update chosen payment method soon, in wc_ajax_update_order_review https://github.com/woocommerce/woocommerce/pull/29248
 29164 Fixed logged-in users are able to access reset password page. https://github.com/woocommerce/woocommerce/pull/29164
 29159 refactor: remove unused while loop from WP CLI update command https://github.com/woocommerce/woocommerce/pull/29159

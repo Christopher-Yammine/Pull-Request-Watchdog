@@ -1,0 +1,5 @@
+27864 Use WP reset_password() function to reset the customer password https://github.com/woocommerce/woocommerce/pull/27864
+27851 Add filter to uniqueness of webhooks, allowing all to send. https://github.com/woocommerce/woocommerce/pull/27851
+27653 #26764 secure cookie filter hook https://github.com/woocommerce/woocommerce/pull/27653
+26087 Decrease total sales per product when an order is reversed https://github.com/woocommerce/woocommerce/pull/26087
+25935 allow custom fields on csv export to fetch variations https://github.com/woocommerce/woocommerce/pull/25935
