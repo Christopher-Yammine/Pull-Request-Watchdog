@@ -1,5 +1,0 @@
-Use WP reset_password() function to reset the customer password
-Add filter to uniqueness of webhooks, allowing all to send.
-#26764 secure cookie filter hook
-Decrease total sales per product when an order is reversed
-allow custom fields on csv export to fetch variations

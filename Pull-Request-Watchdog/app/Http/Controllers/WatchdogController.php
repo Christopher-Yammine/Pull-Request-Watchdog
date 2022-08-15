@@ -5,21 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\GithubController;
+use SheetDB\SheetDB;
 
-
+ini_set('max_execution_time', '300');
 class WatchdogController extends Controller
 {
 
 
     public function getOldPullRequests()
     {
+        $sheet = new SheetDB(env("SHEET_API_KEY"), "Old PRs");
         $n = 2;
         $mydate = date("Y-m-d", strtotime("-2 week"));
         $mytime = date("H:i:s");
         $formattedDate = $mydate . "T" . $mytime . "Z";
         $github = new GithubController();
         $fileLink = "";
-        $filename = "./Downloads/1-old-pull-requests.csv";
+        $filename = "./Downloads/1-old-pull-requests.txt";
         $output = "";
         for ($i = 1; $i < $n; $i++) {
 
@@ -27,7 +29,8 @@ class WatchdogController extends Controller
 
             for ($j = 0; $j < count($pull_requests); $j++) {
                 if ($pull_requests[$j]->created_at < $formattedDate) {
-                    $output .= $pull_requests[$j]->title . " " . $pull_requests[$j]->created_at . "\n";
+                    $sheet->create(["PR number" => $pull_requests[$j]->number, "PR title" => $pull_requests[$j]->title, "PR URL" => $pull_requests[$j]->html_url]);
+                    $output .= $pull_requests[$j]->number . " " . $pull_requests[$j]->title . " " . $pull_requests[$j]->html_url . "\n";
                 }
             }
             $n = $github->urlCurl($i)[0];
@@ -44,10 +47,11 @@ class WatchdogController extends Controller
 
     public function getRRPullRequests()
     {
+        $sheet = new SheetDB(env("SHEET_API_KEY"), "ReviewRequired");
         $n = 2;
         $fileLink = "";
         $github = new GithubController();
-        $filename = "./Downloads/2-review-required-pull-requests.csv";
+        $filename = "./Downloads/2-review-required-pull-requests.txt";
         $output = "";
         for ($i = 1; $i < $n; $i++) {
 
@@ -55,7 +59,8 @@ class WatchdogController extends Controller
 
             for ($j = 0; $j < count($pull_requests); $j++) {
                 if ($pull_requests[$j]->requested_reviewers != [] || $pull_requests[$j]->requested_teams != []) {
-                    $output .= $pull_requests[$j]->title . "\n";
+                    $sheet->create(["PR number" => $pull_requests[$j]->number, "PR title" => $pull_requests[$j]->title, "PR URL" => $pull_requests[$j]->html_url]);
+                    $output .= $pull_requests[$j]->number . " " . $pull_requests[$j]->title . " " . $pull_requests[$j]->html_url . "\n";
                 }
             }
             $n = $github->urlCurl($i)[0];
@@ -70,13 +75,13 @@ class WatchdogController extends Controller
     }
     public function getSuccessPullRequests()
     {
-        ini_set('max_execution_time', '300');
+        $sheet = new SheetDB(env("SHEET_API_KEY"), "SuccessfulPRs");
         $headers = [
             "Accept:application/vnd.github+json", "User-Agent: Christopher-Yammine",
             "authorization: Bearer " . env("TOKEN")
         ];
         $n = 2;
-        $filename = "./Downloads/3-Successful-PRs.csv";
+        $filename = "./Downloads/3-Successful-PRs.txt";
         $fileLink = "";
         $output = "";
 
@@ -110,7 +115,8 @@ class WatchdogController extends Controller
                 $status_pull_requests = json_decode($resp2, false);
 
                 if ($status_pull_requests->state == "success") {
-                    $output .= $pull_requests[$j]->title . "\n";
+                    $sheet->create(["PR number" => $pull_requests[$j]->number, "PR title" => $pull_requests[$j]->title, "PR URL" => $pull_requests[$j]->html_url]);
+                    $output .= $pull_requests[$j]->number . " " . $pull_requests[$j]->title . " " . $pull_requests[$j]->html_url . "\n";
                 }
             }
             if (count($pull_requests) === 100) {
@@ -127,7 +133,8 @@ class WatchdogController extends Controller
     }
     public function getUnassignedPullRequests()
     {
-        $filename = "./Downloads/4-Unassigned-PRs.csv";
+        $sheet = new SheetDB(env("SHEET_API_KEY"), "UnassignedPRs");
+        $filename = "./Downloads/4-Unassigned-PRs.txt";
         $fileLink = "";
         $output = "";
         $github = new GithubController();
@@ -137,7 +144,8 @@ class WatchdogController extends Controller
             $pull_requests = $github->urlCurl($i)[1];
             for ($j = 0; $j < count($pull_requests); $j++) {
                 if ($pull_requests[$j]->requested_reviewers == [] && $pull_requests[$j]->requested_teams == []) {
-                    $output .= $pull_requests[$j]->title . "\n";
+                    $sheet->create(["PR number" => $pull_requests[$j]->number, "PR title" => $pull_requests[$j]->title, "PR URL" => $pull_requests[$j]->html_url]);
+                    $output .= $pull_requests[$j]->number . " " . $pull_requests[$j]->title . " " . $pull_requests[$j]->html_url . "\n";
                 }
             }
             $n = $github->urlCurl($i)[0];
